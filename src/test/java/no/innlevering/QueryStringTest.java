@@ -12,6 +12,12 @@ public class QueryStringTest {
 
     @Test
     void returnParameterStatus200() {
+
         assertEquals("200", QueryString.getParameter("status"));
+    }
+    @Test
+    void returnParameterStatus404() {
+
+        assertEquals("404", QueryString.getParameter("status"));
     }
 }
