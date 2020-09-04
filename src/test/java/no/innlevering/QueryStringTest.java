@@ -20,4 +20,9 @@ public class QueryStringTest {
 
         assertEquals("404", QueryString.getParameter("status","status=404"));
     }
+
+    @Test
+    void returnBodyValue () {
+        assertEquals("Hei", QueryString.getParameter("body", "status=200&body=hei"));
+    }
 }
