@@ -23,6 +23,12 @@ public class QueryStringTest {
 
     @Test
     void returnBodyValue () {
-        assertEquals("Hei", QueryString.getParameter("body", "status=200&body=hei"));
+        assertEquals("Hei", QueryString.getParameter("body", "status=200&body=Hei"));
     }
+
+    // Skjønner du hva jeg prøver å få til?
+    //@Test
+    //void returnBodyfromQueryString() {
+    //   assertEquals("hei", new QueryString("status=200&body=Hei").getParameter("status"));
+    //}
 }
