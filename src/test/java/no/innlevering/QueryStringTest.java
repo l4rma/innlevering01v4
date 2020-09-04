@@ -13,11 +13,11 @@ public class QueryStringTest {
     @Test
     void returnParameterStatus200() {
 
-        assertEquals("200", QueryString.getParameter("status"));
+        assertEquals("200", QueryString.getParameter("status","status=200"));
     }
     @Test
     void returnParameterStatus404() {
 
-        assertEquals("404", QueryString.getParameter("status"));
+        assertEquals("404", QueryString.getParameter("status","status=404"));
     }
 }
