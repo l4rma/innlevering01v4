@@ -15,4 +15,9 @@ public class QueryStringTest {
     void returnParmeterStatus200() {
         assertEquals("200", QueryString.getParameter("Status"));
     }
+
+    @Test
+    void retunParameterStatus404(){
+        assertEquals("404", QueryString.getParameter("Status"));
+    }
 }
