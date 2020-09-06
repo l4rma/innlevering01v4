@@ -54,7 +54,8 @@ public class QueryStringTest {
 
     @Test
     void getQueryStringAsString() {
-        QueryString q = new QueryString("status=500&body=Hello");
+        QueryString q = new QueryString("status=500");
+        q.addParameter("body", "Hello");
         assertEquals("status=500&body=Hello", q.getQueryString());
     }
 
