@@ -82,7 +82,26 @@ public class QueryStringTest {
     @Test
     void handleÆØÅ() {
         // skjønner ikke helt hva oppgaven ber om her..
+        // søkte på "æ" i google, så de hadde "ie=UTF-8" i slutten av queryStringen,
+        // så gjetter at det er en løsning..?
         QueryString q = new QueryString("status=301&body=det%20er%20låv%20å%20bruke%20æøå");
-        assertEquals("det er låv å bruke æøå", q.getParameter("body"));
+        //assertEquals("UTF-8", q.getParameter("ie"));
+        assertEquals("status=301&body=det%20er%20låv%20å%20bruke%20æøå&ie=UTF-8", q.getQueryString());
     }
+
+    @Test
+    void checkIfStackOverflowWhenAddingParameter() {
+        QueryString q = new QueryString("status=1");
+        q.addParameter("test", "111");
+        q.addParameter("body", "jøjæjå");
+        assertEquals("UTF-8", q.getParameter("ie"));
+    }
+
+    @Test
+    void checkAddingParameterWithSpaces() {
+        QueryString q = new QueryString();
+        q.addParameter("body", "her er det mellomrom gitt");
+        assertEquals("body=her%20er%20det%20mellomrom%20gitt", q.getQueryString());
+    }
+
 }

@@ -13,9 +13,10 @@ public class QueryString {
 
     public QueryString(String queryString) {
         this.queryString = queryString;
+        checkForÆØÅinParameterValues();
     }
 
-    public static String getParameter(String parameterName) {
+    public String getParameter(String parameterName) {
         HashMap<String, String> convertedQuery = new HashMap<>();
 
         if(queryString.contains("&")) {
@@ -74,14 +75,26 @@ public class QueryString {
     }
 
     public void addParameter(String name, String value) {
+        if(value.contains(" ")) {
+            value = value.replaceAll(" ", "%20");
+        }
         if (queryString == "") {
             queryString += name + "=" + value;
         } else {
             queryString += "&" + name + "=" + value;
         }
+        checkForÆØÅinParameterValues();
     }
 
     public String getQueryString() {
         return queryString;
+    }
+
+    private void checkForÆØÅinParameterValues() {
+        if(queryString.contains("æ") || queryString.contains("æ") || queryString.contains("å")) {
+            if(!queryString.contains("UTF-8")) {
+                this.addParameter("ie", "UTF-8");
+            }
+        }
     }
 }
