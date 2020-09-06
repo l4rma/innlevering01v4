@@ -2,3 +2,8 @@
 
 # innlevering01v4
 READ ME!
+
+Video av parprogrammering:
+https://youtu.be/K34GdMSxUZg
+
+Erfaring:
