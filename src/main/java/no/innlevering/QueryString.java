@@ -13,6 +13,23 @@ public class QueryString {
 
     public static String getParameter(String parameterName) {
         HashMap<String, String> convertedQuery = new HashMap<>();
+
+        if(queryString.contains("&")) {
+            for (String parameter : queryString.split("&")) {
+                int equal = parameter.indexOf("=");
+                String name = parameter.substring(0, equal);
+                String value = parameter.substring(equal+1);
+                convertedQuery.put(name, value);
+            }
+        } else {
+            int equalsPos1 = queryString.indexOf("=");
+            String firstParameterName1 = queryString.substring(0, equalsPos1);
+            String firstParameterValue1 = queryString.substring(equalsPos1 +1);
+            convertedQuery.put(firstParameterName1, firstParameterValue1);
+        }
+        /*
+        //Lar dette stå så man ser hva vi gjorde først..
+
         if (!queryString.contains("&")) {
             int equalsPos1 = queryString.indexOf("=");
             String firstParameterName1 = queryString.substring(0, equalsPos1);
@@ -36,7 +53,7 @@ public class QueryString {
             convertedQuery.put(firstParameterName, firstParameterValue);
             convertedQuery.put(secondParameterName, secondParameterValue);
         }
-
+        */
         String parameterValue = "";
         if (convertedQuery.containsKey(parameterName)) {
             parameterValue = convertedQuery.get(parameterName);

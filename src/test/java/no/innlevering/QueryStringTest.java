@@ -40,4 +40,12 @@ public class QueryStringTest {
         q.addParameter("body", "hei");
         assertEquals("hei", q.getParameter("body"));
     }
+
+    @Test
+    void addingMultipleParameters() {
+        QueryString q = new QueryString("status=200");
+        q.addParameter("body", "hei");
+        q.addParameter("para", "dududu");
+        assertEquals("dududu", q.getParameter("para"));
+    }
 }
