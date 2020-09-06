@@ -1,27 +1,28 @@
 package no.innlevering;
 
+import javax.lang.model.util.Types;
 import java.util.HashMap;
 
 public class QueryString {
 
-    public String queryString = "";
+    private static String queryString;
 
     public QueryString(String queryString) {
         this.queryString = queryString;
     }
 
-    public static String getParameter(String parameterName, String testQuery) {
+    public static String getParameter(String parameterName) {
         HashMap<String, String> convertedQuery = new HashMap<>();
-        if (!testQuery.contains("&")) {
-            int equalsPos1 = testQuery.indexOf("=");
-            String firstParameterName1 = testQuery.substring(0, equalsPos1);
-            String firstParameterValue1 = testQuery.substring(equalsPos1 +1);
+        if (!queryString.contains("&")) {
+            int equalsPos1 = queryString.indexOf("=");
+            String firstParameterName1 = queryString.substring(0, equalsPos1);
+            String firstParameterValue1 = queryString.substring(equalsPos1 +1);
             convertedQuery.put(firstParameterName1, firstParameterValue1);
-        } else if (testQuery.contains("&")) {
-            int splitInt = testQuery.indexOf("&");
+        } else if (queryString.contains("&")) {
+            int splitInt = queryString.indexOf("&");
 
-            String firstPart = testQuery.substring(0, splitInt);
-            String secondPart = testQuery.substring(splitInt + 1);
+            String firstPart = queryString.substring(0, splitInt);
+            String secondPart = queryString.substring(splitInt + 1);
 
             int equalsPos = firstPart.indexOf("=");
             int equalsPos2 = secondPart.indexOf("=");
