@@ -80,8 +80,7 @@ public class QueryStringTest {
 
     @Test
     void handleÆØÅ() {
-        // skjønner ikke helt hva oppgaven ber om her,
-        // men tolker det som at "aa" = "å", "oe" = "ø" og "ae" = "æ"
+        // skjønner ikke helt hva oppgaven ber om her..
         QueryString q = new QueryString("status=301&body=det%20er%20låv%20å%20bruke%20æøå");
         assertEquals("det er låv å bruke æøå", q.getParameter("body"));
     }
