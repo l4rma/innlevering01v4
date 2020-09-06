@@ -7,6 +7,10 @@ public class QueryString {
 
     private static String queryString;
 
+    public QueryString() {
+        this("");
+    }
+
     public QueryString(String queryString) {
         this.queryString = queryString;
     }
@@ -19,13 +23,13 @@ public class QueryString {
                 int equal = parameter.indexOf("=");
                 String name = parameter.substring(0, equal);
                 String value = parameter.substring(equal+1);
-                convertedQuery.put(name, value);
+                convertedQuery.put(name.toLowerCase(), value);
             }
         } else {
             int equalsPos1 = queryString.indexOf("=");
             String firstParameterName1 = queryString.substring(0, equalsPos1);
             String firstParameterValue1 = queryString.substring(equalsPos1 +1);
-            convertedQuery.put(firstParameterName1, firstParameterValue1);
+            convertedQuery.put(firstParameterName1.toLowerCase(), firstParameterValue1);
         }
         /*
         //Lar dette stå så man ser hva vi gjorde først..
@@ -55,13 +59,18 @@ public class QueryString {
         }
         */
         String parameterValue = "";
-        if (convertedQuery.containsKey(parameterName)) {
-            parameterValue = convertedQuery.get(parameterName);
+        if (convertedQuery.containsKey(parameterName.toLowerCase())) {
+            parameterValue = convertedQuery.get(parameterName.toLowerCase());
+
+            // returner "%20" som " "
+            if(parameterValue.contains("%20")) {
+                parameterValue = parameterValue.replace("%20", " ");
+            }
+
             return parameterValue;
+        } else {
+            return "-1"; // burde throwe i stedet?
         }
-
-
-        return "-1";
     }
 
     public void addParameter(String name, String value) {
@@ -70,5 +79,9 @@ public class QueryString {
         } else {
             queryString += "&" + name + "=" + value;
         }
+    }
+
+    public String getQueryString() {
+        return queryString;
     }
 }
