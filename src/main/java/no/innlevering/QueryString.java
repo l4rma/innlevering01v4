@@ -46,4 +46,12 @@ public class QueryString {
 
         return "-1";
     }
+
+    public void addParameter(String name, String value) {
+        if (queryString == "") {
+            queryString += name + "=" + value;
+        } else {
+            queryString += "&" + name + "=" + value;
+        }
+    }
 }
