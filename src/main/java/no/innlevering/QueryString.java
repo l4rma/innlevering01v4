@@ -97,7 +97,7 @@ public class QueryString {
     }
 
     private void checkForÆØÅinParameterValues() {
-        if(queryString.contains("æ") || queryString.contains("æ") || queryString.contains("å")) {
+        if(queryString.contains("æ") || queryString.contains("ø") || queryString.contains("å")) {
             if(!queryString.contains("UTF-8")) {
                 this.addParameter("ie", "UTF-8");
             }
