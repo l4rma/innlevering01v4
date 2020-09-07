@@ -15,12 +15,12 @@ public class QueryStringTest {
 
     @Test
     void returnParameterStatus200() {
-        QueryString a = new QueryString("status=200");
+        QueryString a = new QueryString("?status=200");
         assertEquals("200", a.getParameter("status"));
     }
     @Test
     void returnParameterStatus404() {
-        QueryString a = new QueryString("status=404");
+        QueryString a = new QueryString("?status=404");
         assertEquals("404", a.getParameter("status"));
     }
 
