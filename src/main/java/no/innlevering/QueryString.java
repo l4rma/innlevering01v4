@@ -18,6 +18,12 @@ public class QueryString {
 
     public String getParameter(String parameterName) {
         HashMap<String, String> convertedQuery = new HashMap<>();
+        if(queryString.contains("?")){
+            int equal = queryString.indexOf("?");
+            if(equal == 0){
+                queryString = queryString.substring(1);
+            }
+        }
 
         if(queryString.contains("&")) {
             for (String parameter : queryString.split("&")) {
@@ -79,7 +85,7 @@ public class QueryString {
             value = value.replaceAll(" ", "%20");
         }
         if (queryString == "") {
-            queryString += name + "=" + value;
+            queryString += "?"+name + "=" + value;
         } else {
             queryString += "&" + name + "=" + value;
         }
@@ -91,7 +97,7 @@ public class QueryString {
     }
 
     private void checkForÆØÅinParameterValues() {
-        if(queryString.contains("æ") || queryString.contains("æ") || queryString.contains("å")) {
+        if(queryString.contains("æ") || queryString.contains("ø") || queryString.contains("å")) {
             if(!queryString.contains("UTF-8")) {
                 this.addParameter("ie", "UTF-8");
             }
